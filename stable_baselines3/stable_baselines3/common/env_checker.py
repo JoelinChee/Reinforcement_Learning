@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import warnings
 from typing import Any
 
@@ -293,7 +295,7 @@ def _check_obs(obs: tuple | dict | np.ndarray | int, observation_space: spaces.S
                 )
                 message += f"{len(invalid_indices[0])} invalid indices: \n"
 
-                for index in zip(*invalid_indices, strict=True):
+                for index in zip(*invalid_indices):
                     index_str = ",".join(map(str, index))
                     message += (
                         f"Expected: {lower_bounds[index]} <= obs[{index_str}] <= {upper_bounds[index]}, "

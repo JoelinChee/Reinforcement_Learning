@@ -1,4 +1,5 @@
 """Policies: abstract base class and concrete implementations."""
+from __future__ import annotations
 
 import collections
 import copy

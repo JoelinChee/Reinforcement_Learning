@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import gymnasium as gym
 import torch as th
 from gymnasium import spaces

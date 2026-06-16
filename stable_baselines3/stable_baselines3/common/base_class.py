@@ -1,4 +1,5 @@
 """Abstract base classes for RL algorithms."""
+from __future__ import annotations
 
 import io
 import pathlib

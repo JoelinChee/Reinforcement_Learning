@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 __all__ = ["Monitor", "ResultsWriter", "get_monitor_files", "load_results"]
 
 import csv

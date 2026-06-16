@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import warnings
 from abc import ABC, abstractmethod
 from collections.abc import Generator
@@ -93,7 +95,7 @@ class BaseBuffer(ABC):
         Add a new batch of transitions to the buffer
         """
         # Do a for loop along the batch axis
-        for data in zip(*args, strict=True):
+        for data in zip(*args):
             self.add(*data)
 
     def reset(self) -> None:

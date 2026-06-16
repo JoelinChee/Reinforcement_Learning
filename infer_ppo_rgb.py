@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import time
 from pathlib import Path
+import sys
 
 import gym
 import numpy as np
@@ -18,6 +19,16 @@ from flappy_bird_gym.envs.flappy_bird_env_rgb import FlappyBirdEnvRGB
 
 
 ENV_ID = "FlappyBird-rgb-v0"
+
+
+def use_local_stable_baselines3() -> Path:
+    local_source = Path(__file__).resolve().parent / "stable_baselines3"
+    if not local_source.exists():
+        raise SystemExit(f"Local stable_baselines3 source not found: {local_source}")
+    source_path = str(local_source)
+    if source_path not in sys.path:
+        sys.path.insert(0, source_path)
+    return local_source
 
 
 class RGBObservationWrapper(gym.ObservationWrapper):
@@ -68,6 +79,7 @@ def make_env(seed: int, screen_size: tuple[int, int]) -> gym.Env:
 
 def main() -> None:
     args = parse_args()
+    local_stable_baselines3 = use_local_stable_baselines3()
     model_path = Path(args.model_path)
     if not model_path.exists():
         raise SystemExit(
@@ -78,13 +90,21 @@ def main() -> None:
         )
 
     try:
+        import stable_baselines3
         from stable_baselines3 import PPO
         from stable_baselines3.common.vec_env import DummyVecEnv, VecTransposeImage
     except ImportError as exc:
         raise SystemExit(
-            "stable-baselines3 is required. Install with: "
-            "pip install stable-baselines3==1.8.0"
+            "Local stable_baselines3 dependencies are missing. "
+            f"Using source directory: {local_stable_baselines3}"
         ) from exc
+
+    imported_from = Path(stable_baselines3.__file__).resolve()
+    if not imported_from.is_relative_to(local_stable_baselines3.resolve()):
+        raise SystemExit(
+            "Expected to import stable_baselines3 from local source, got: "
+            f"{imported_from}"
+        )
 
     screen_size = (args.screen_width, args.screen_height)
     env = DummyVecEnv([lambda: make_env(args.seed, screen_size)])

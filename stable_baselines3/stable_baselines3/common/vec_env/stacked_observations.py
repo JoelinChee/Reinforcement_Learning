@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import warnings
 from collections.abc import Mapping
 from typing import Any, Generic, TypeVar
