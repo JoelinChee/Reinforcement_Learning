@@ -1,0 +1,91 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // {
+        //     "name": "Python: Debug cli.py (test_RL, human)",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/flappy_bird_gym/cli.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+        //     "python": "/home/joelin/miniconda3/envs/test_RL/bin/python",
+        //     "cwd": "${workspaceFolder}",
+        //     "env": {
+        //         "PYTHONPATH": "${workspaceFolder}"
+        //     },
+        //     "args": [
+        //         "--mode",
+        //         "human"
+        //     ]
+        // },
+        // {
+        //     "name": "Python: Debug cli.py (test_RL, random)",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/flappy_bird_gym/cli.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+        //     "python": "/home/joelin/miniconda3/envs/test_RL/bin/python",
+        //     "cwd": "${workspaceFolder}",
+        //     "env": {
+        //         "PYTHONPATH": "${workspaceFolder}"
+        //     },
+        //     "args": [
+        //         "--mode",
+        //         "random"
+        //     ]
+        // },
+        {
+            "name": "Python: Debug train_ppo.py (test_RL)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/train_ppo.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/home/joelin/miniconda3/envs/test_RL/bin/python",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                "--env-id",
+                "FlappyBird-v0",
+                "--total-timesteps",
+                "1000",
+                "--n-envs",
+                "1",
+                "--n-steps",
+                "128",
+                "--batch-size",
+                "128",
+                "--save-path",
+                "models/ppo_flappy_bird_debug",
+                "--device",
+                "cpu"
+            ]
+        },
+        // {
+        //     "name": "Python: Debug infer_ppo.py (test_RL)",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/infer_ppo.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+        //     "python": "/home/joelin/miniconda3/envs/test_RL/bin/python",
+        //     "cwd": "${workspaceFolder}",
+        //     "env": {
+        //         "PYTHONPATH": "${workspaceFolder}"
+        //     },
+        //     "args": [
+        //         "--env-id",
+        //         "FlappyBird-v0",
+        //         "--model-path",
+        //         "models/ppo_flappy_bird.zip",
+        //         "--episodes",
+        //         "1",
+        //         "--fps",
+        //         "30"
+        //     ]
+        // }
+    ]
+}
